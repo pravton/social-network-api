@@ -20,7 +20,7 @@ const ReactionSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: createdDate => dateFormat(createdDate, "dS, mmmm, yyyy, h:MM TT")
+      get: createdDate => dateFormat(createdDate, "dddd, mmmm dS, yyyy, h:MM:ss TT")
     }
   }
 );
@@ -35,10 +35,10 @@ const ThoughtSchema = new Schema(
       min: [1, 'Please enter a valid thought!'],
       max: [280, 'You exceeded the allowed 280 character limit!']
     },
-    createdAt: {
+    createdAtDate: {
       type: Date,
       default: Date.now,
-      get: createdDate => dateFormat(createdDate, "dS, mmmm, yyyy, h:MM TT")
+      get: createdDate => dateFormat(createdDate, "dddd, mmmm dS, yyyy, h:MM:ss TT")
     },
     userName: {
       type: String,
@@ -48,7 +48,8 @@ const ThoughtSchema = new Schema(
   },
   {
     toJSON: {
-      virtuals: true
+      virtuals: true,
+      getters: true
     },
     id: false
   }
